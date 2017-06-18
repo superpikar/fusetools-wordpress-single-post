@@ -6,24 +6,24 @@ This project is currently under development.
 
 ## Screenshots
 
+Plain Post
+<br/>
 <kbd>
-  Plain Post
-  <br/>
   <img src="screenshots/plain-post.png" width="250px" /> 
 </kbd>
 
 <hr/>
 
+HTML Post
+<br/>
 <kbd>
-  HTML Post
-  <br/>
   <img src="screenshots/html-post.png" width="250px" /> 
 </kbd>
 
 <hr/>
 
+HTML Post with much white space at the bottom of webview
+<br/>
 <kbd>
-  HTML Post with much white space at the bottom of webview
-  <br/>
   <img src="screenshots/html-auto-post.png" width="250px" /> 
 </kbd>
