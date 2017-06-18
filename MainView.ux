@@ -1,0 +1,96 @@
+<App>
+	<JavaScript File="./MainView.js" />
+	
+	<!-- plain post -->
+	<Page ux:Class="PlainPost">
+		<ScrollView ClipToBounds="true">
+      <StackPanel Alignment="Top" Padding="30,10">
+	    	<MainText>Plain Post</MainText>
+	    	<TitleText Value="{post.title}" />
+	    	<Each Items="{post.contentParagraphs}">
+	        <ContentText Value="{content}" Margin="0,0,0,10" />
+	      </Each>
+      </StackPanel>
+    </ScrollView>	
+  </Page>
+
+	<!-- html post -->
+	<Page ux:Class="HTMLPost">
+    <ScrollView ClipToBounds="true">
+      <StackPanel Alignment="Top" Padding="30,10">
+	    	<MainText>HTML Post</MainText>
+	    	<TitleText Value="{post.title}" />
+    	  <NativeViewHost>
+          <WebView Height="900" ZoomEnabled="false" Source="{post.contentHTML}">
+          </WebView>
+        </NativeViewHost>
+    	</StackPanel>
+    </ScrollView>
+  </Page>
+
+  <!-- html post -->
+	<Page ux:Class="HTMLPostAuto">
+    <ScrollView ClipToBounds="true">
+      <StackPanel Alignment="Top" Padding="30,10">
+	    	<MainText>HTML Post Auto</MainText>
+	    	<TitleText Value="{post.title}" />
+    	  <NativeViewHost>
+          <WebView Height="100%" ZoomEnabled="false" Source="{post.contentHTML}">
+          </WebView>
+        </NativeViewHost>
+    	</StackPanel>
+    </ScrollView>
+  </Page>
+
+  <Text ux:Class="MainText"  
+				TextWrapping="Wrap" 
+				FontSize="30" 
+				Margin="0,0,0,30"/>
+  
+  <Text ux:Class="TitleText"  
+				TextWrapping="Wrap" 
+				FontSize="20"
+				Margin="0,0,0,20"/>
+
+	<Text ux:Class="ContentText" 
+				FontSize="13" 
+				TextWrapping="Wrap" />
+
+  <Panel ux:Class="MenuButton" Padding="5" Margin="0,5,10,5" Color="#000" >
+		<string ux:Property="Title" />
+
+		<Text Color="#ffffff">{ReadProperty this.Title}</Text>
+  	<WhilePressed>
+      <Scale Factor=".8" Duration=".08" Easing="QuadraticOut" />
+    </WhilePressed>
+  </Panel>
+
+  <DockPanel>
+  	<StatusBarBackground Dock="Top"/>
+    <BottomBarBackground Dock="Bottom"/>
+
+    <PageControl ux:Name="pageControl">
+    	<PlainPost ux:Name="plainPost" />
+    	<HTMLPost ux:Name="htmlPost"/>
+    	<HTMLPostAuto ux:Name="htmlPostAuto"/>
+    </PageControl>
+
+  	<StackPanel Orientation="Horizontal" Dock="Top" Navigation="pageControl" Padding="30,10">
+      <MenuButton Title="Plain">
+        <Clicked>
+          <NavigateTo Target="plainPost"/>
+        </Clicked>
+      </MenuButton>
+      <MenuButton Title="HTML">
+      	<Clicked>
+          <NavigateTo Target="htmlPost"/>
+        </Clicked>
+      </MenuButton>
+      <MenuButton Title="HTML Auto">
+      	<Clicked>
+          <NavigateTo Target="htmlPostAuto"/>
+        </Clicked>
+      </MenuButton>
+  	</StackPanel>
+  </DockPanel>
+</App>
