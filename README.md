@@ -10,6 +10,14 @@ Able to display text :
 
 This project is currently under development.
 
+## How to Run
+```
+# install the project dependency from NPM
+npm install
+
+# open fusetools app, then open the project
+```
+
 ## Screenshots
 
 Plain Post
