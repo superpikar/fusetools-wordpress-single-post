@@ -2,6 +2,12 @@
 
 An example how to display richtext from JSON into WebView in Fusetools.
 
+Able to display text : 
+- italic
+- bold
+- center align
+- right align
+
 This project is currently under development.
 
 ## Screenshots
@@ -14,6 +20,14 @@ Plain Post
 
 <hr/>
 
+Plain Formatted Post
+<br/>
+<kbd>
+  <img src="screenshots/plain-auto-post.png" width="250px" /> 
+</kbd>
+
+<hr/>
+
 HTML Post
 <br/>
 <kbd>
@@ -21,9 +35,3 @@ HTML Post
 </kbd>
 
 <hr/>
-
-HTML Post with much white space at the bottom of webview
-<br/>
-<kbd>
-  <img src="screenshots/html-auto-post.png" width="250px" /> 
-</kbd>
