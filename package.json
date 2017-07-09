@@ -1,0 +1,22 @@
+{
+  "name": "fusetools-wordpress-single-post",
+  "version": "1.0.0",
+  "description": "An example how to display richtext from JSON into WebView in Fusetools.",
+  "main": "MainView.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superpikar/fusetools-wordpress-single-post.git"
+  },
+  "keywords": [
+    "fusetools"
+  ],
+  "author": "@superpikar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superpikar/fusetools-wordpress-single-post/issues"
+  },
+  "homepage": "https://github.com/superpikar/fusetools-wordpress-single-post#readme"
+}

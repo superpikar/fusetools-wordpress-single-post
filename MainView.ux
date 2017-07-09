@@ -1,6 +1,40 @@
 <App>
 	<JavaScript File="./MainView.js" />
+
+	<!-- COMPONENT  -->
+	<Font File="./assets/Playfair_Display/PlayfairDisplay-Regular.ttf" ux:Global="Normal" />
+	<Font File="./assets/Playfair_Display/PlayfairDisplay-Italic.ttf" ux:Global="Italic" />
+	<Font File="./assets/Playfair_Display/PlayfairDisplay-Bold.ttf" ux:Global="Bold" />
 	
+	<Text ux:Class="MainText"  
+				TextWrapping="Wrap" 
+				FontSize="30" 
+				Margin="0,0,0,30"/>
+  
+  <Text ux:Class="TitleText"  
+				TextWrapping="Wrap"
+				FontSize="20"
+				Margin="0,0,0,20"/>
+
+	<Text ux:Class="ContentText" 
+				FontSize="13" 
+				TextWrapping="Wrap"
+				Margin="0,0,5,0"
+				/>
+	
+	<ContentText ux:Class="NormalText" Font="Normal" />
+	<ContentText ux:Class="BoldText" Font="Bold" />
+	<ContentText ux:Class="ItalicText" Font="Italic" />
+
+  <Panel ux:Class="MenuButton" Padding="5" Margin="0,5,10,5" Color="#000" >
+		<string ux:Property="Title" />
+
+		<Text Color="#ffffff">{ReadProperty this.Title}</Text>
+  	<WhilePressed>
+      <Scale Factor=".8" Duration=".08" Easing="QuadraticOut" />
+    </WhilePressed>
+  </Panel>
+
 	<!-- plain post -->
 	<Page ux:Class="PlainPost">
 		<ScrollView ClipToBounds="true">
@@ -9,6 +43,76 @@
 	    	<TitleText Value="{post.title}" />
 	    	<Each Items="{post.contentParagraphs}">
 	        <ContentText Value="{content}" Margin="0,0,0,10" />
+	      </Each>
+      </StackPanel>
+    </ScrollView>	
+  </Page>
+
+	<Page ux:Class="PlainPostAuto">
+		<ScrollView ClipToBounds="true">
+      <StackPanel Alignment="Top" Padding="30,10">
+	    	<MainText>Plain Post Auto</MainText>
+				<!--<WrapPanel>
+					<TitleText TextAlignment="Left">
+						In this guide, we will look at how you install Fuse on both Windows and macOS. 
+					</TitleText>
+					<TitleText TextAlignment="Center">
+						In this guide, we will look at how you install Fuse on both Windows and macOS. 
+					</TitleText>
+					<TitleText TextAlignment="Center">
+						***
+					</TitleText>
+					<TitleText TextAlignment="Right">
+						In this guide, we will look at how you install Fuse on both Windows and macOS. 
+					</TitleText>
+				</WrapPanel>
+				<TitleText TextAlignment="Center">
+					In this guide, we will look at how you install Fuse on both Windows and macOS. 
+				</TitleText>
+				<TitleText TextAlignment="Center">
+					***
+				</TitleText>-->
+	    	<TitleText Value="{post.title}" />
+	    	<Each Items="{post.contentParagraphsFormatted}">
+					<StackPanel Margin="0,0,0,10">
+						<ContentText Value="Paragraph: {paragraphNumber} - Alignment: {paragraphAlignment}" Margin="0,0,0,10" Color="#091" />
+						<Panel>
+							<Match Value="{paragraphAlignment}">
+								<Case String="Center">
+									<Each Items="{paragraphContents}">
+										<Match Value="{fontStyle}">
+											<Case String="Normal">
+												<NormalText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+											</Case>
+											<Case String="Italic">
+												<ItalicText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+											</Case>
+											<Case String="Bold">
+												<BoldText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+											</Case>
+										</Match>
+									</Each>
+								</Case>
+								<Case IsDefault="true">
+									<WrapPanel>
+										<Each Items="{paragraphContents}">
+											<Match Value="{fontStyle}">
+												<Case String="Normal">
+													<NormalText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+												</Case>
+												<Case String="Italic">
+													<ItalicText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+												</Case>
+												<Case String="Bold">
+													<BoldText TextAlignment="{paragraphAlignment}" Value="{content}"/>
+												</Case>
+											</Match>
+										</Each>
+									</WrapPanel>
+								</Case>
+							</Match>
+						</Panel>
+					</StackPanel>
 	      </Each>
       </StackPanel>
     </ScrollView>	
@@ -28,52 +132,15 @@
     </ScrollView>
   </Page>
 
-  <!-- html post -->
-	<Page ux:Class="HTMLPostAuto">
-    <ScrollView ClipToBounds="true">
-      <StackPanel Alignment="Top" Padding="30,10">
-	    	<MainText>HTML Post Auto</MainText>
-	    	<TitleText Value="{post.title}" />
-    	  <NativeViewHost>
-          <WebView Height="100%" ZoomEnabled="false" Source="{post.contentHTML}">
-          </WebView>
-        </NativeViewHost>
-    	</StackPanel>
-    </ScrollView>
-  </Page>
-
-  <Text ux:Class="MainText"  
-				TextWrapping="Wrap" 
-				FontSize="30" 
-				Margin="0,0,0,30"/>
-  
-  <Text ux:Class="TitleText"  
-				TextWrapping="Wrap" 
-				FontSize="20"
-				Margin="0,0,0,20"/>
-
-	<Text ux:Class="ContentText" 
-				FontSize="13" 
-				TextWrapping="Wrap" />
-
-  <Panel ux:Class="MenuButton" Padding="5" Margin="0,5,10,5" Color="#000" >
-		<string ux:Property="Title" />
-
-		<Text Color="#ffffff">{ReadProperty this.Title}</Text>
-  	<WhilePressed>
-      <Scale Factor=".8" Duration=".08" Easing="QuadraticOut" />
-    </WhilePressed>
-  </Panel>
-
   <DockPanel>
   	<StatusBarBackground Dock="Top"/>
     <BottomBarBackground Dock="Bottom"/>
 
     <PageControl ux:Name="pageControl">
     	<PlainPost ux:Name="plainPost" />
+    	<PlainPostAuto ux:Name="plainPostAuto"/>
     	<HTMLPost ux:Name="htmlPost"/>
-    	<HTMLPostAuto ux:Name="htmlPostAuto"/>
-    </PageControl>
+    </PageControl> 
 
   	<StackPanel Orientation="Horizontal" Dock="Top" Navigation="pageControl" Padding="30,10">
       <MenuButton Title="Plain">
@@ -81,14 +148,14 @@
           <NavigateTo Target="plainPost"/>
         </Clicked>
       </MenuButton>
+      <MenuButton Title="Plain Auto">
+      	<Clicked>
+          <NavigateTo Target="plainPostAuto"/>
+        </Clicked>
+      </MenuButton>
       <MenuButton Title="HTML">
       	<Clicked>
           <NavigateTo Target="htmlPost"/>
-        </Clicked>
-      </MenuButton>
-      <MenuButton Title="HTML Auto">
-      	<Clicked>
-          <NavigateTo Target="htmlPostAuto"/>
         </Clicked>
       </MenuButton>
   	</StackPanel>
